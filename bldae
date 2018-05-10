@@ -1,0 +1,4 @@
+#gcc -c aemain.c -o aemain.o -g -fsanitize=address
+#gcc aemain.o ae/libae.a -o aemain -g -fsanitize=address
+gcc -c aemain.c -o aemain.o -O3
+gcc aemain.o ae/libae.a -o aemain -O3

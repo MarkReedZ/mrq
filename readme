@@ -1,0 +1,44 @@
+
+
+gcc -c mrq.c -o mrq.o
+gcc mrq.o ae/libae.a -o mrq
+
+Test / bench:
+./mrq
+python3 tst.py 
+
+
+Why did multiple clients slow things down with less CPU busy?
+
+sudo lsof -iTCP -sTCP:LISTEN -P -Tf
+TCP *:7000 (SO=ACCEPTCONN,OOBINLINE,PQLEN=0,QLEN=0,QLIM=128,RCVBUF=1048576,REUSEADDR,SNDBUF=1048576 SS=UNKNOWN=0x100 TF=MSS=512,UNKNOWN=0xa0)
+TCP *:7000 (SO=ACCEPTCONN,          PQLEN=0,QLEN=0,QLIM=2,  RCVBUF=1048576,          SNDBUF=1048576                  TF=MSS=512,UNKNOWN=0xa0)
+
+
+
+TODO
+  start_time gets set on first bench cmd
+  Send slow/stop to producer if consumer slow or not there
+  Need a max slot mem / review the 4 sec mechanic
+  Keep stats - slot lengths for hot slots
+  Python async client
+  Tests
+  - Push without a reader and make sure we back pressure
+  - Cluster failures - segmented network, readers can't reach DB
+
+Bytes
+api_id cmd topic slot 4B_len data
+
+
+
+
+
+
+go get github.com/nats-io/gnatsd
+gnatsd
+Bench'd at 2.7m per second vs my 100m 
+
+delme/
+gcc main.c -luv -o main -O3
+gcc evmain.c -lev -o ev -O3
+gcc tests.c -luv -o tests

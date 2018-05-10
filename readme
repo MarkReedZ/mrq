@@ -26,6 +26,10 @@ TODO
   - Push without a reader and make sure we back pressure
   - Cluster failures - segmented network, readers can't reach DB
 
+  Add design / usage notes in the github readme
+  - Also to the wiki pages
+
+
 Bytes
 api_id cmd topic slot 4B_len data
 
